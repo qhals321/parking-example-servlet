@@ -14,7 +14,7 @@
 <br>
 <a href="/member/member_list.do"> member List</a>
 <br>
-<a href="../parking/parking_log.jsp">parking log</a>
+<a href="/admin/log_service.do">parking log</a>
 <br>
 </body>
 </html>

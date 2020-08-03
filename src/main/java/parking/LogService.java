@@ -30,8 +30,8 @@ public class LogService extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
         List<CarBean> car_log =  parkingDao.seeLogs();
+
         req.setAttribute("car_log", car_log);
-        req.setAttribute("hello", "hiiiiii~!@~!@~!@~!");
         RequestDispatcher rd = req.getRequestDispatcher("/parking/parking_log.jsp");
         rd.forward(req,resp);
     }
