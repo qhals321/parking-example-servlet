@@ -10,7 +10,11 @@
 <head>
 </head>
 <body>
-<a href="../member/member_join.jsp"> member join</a>
-<a href="/parkingCar/member/member_list.do"> member List</a>
+<a href="/member/member_join.jsp"> member join</a>
+<br>
+<a href="/member/member_list.do"> member List</a>
+<br>
+<a href="../parking/parking_log.jsp">parking log</a>
+<br>
 </body>
 </html>
