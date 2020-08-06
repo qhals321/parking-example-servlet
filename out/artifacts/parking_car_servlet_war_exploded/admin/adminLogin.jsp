@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="로그인"> &nbsp &nbsp
-                    <input type="button" onclick="window.location.href='/parkingCar/'" value="메인화면"></td>
+                    <input type="button" onclick="window.location.href='/'" value="메인화면"></td>
             </tr>
         </table>
     </form>

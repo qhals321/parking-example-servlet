@@ -16,9 +16,9 @@
         </tr>
         <c:forEach var="log" items="${car_log}">
             <tr align="center">
-                <td width="150" height="50">${log.car_number}</td>
-                <td width="150" height="50">${log.in_time}</td>
-                <td width="150" height="50">${log.out_time}</td>
+                <td width="350" height="50">${log.car_number}</td>
+                <td width="350" height="50">${log.in_time}</td>
+                <td width="350" height="50">${log.out_time}</td>
             </tr>
         </c:forEach>
     </table>

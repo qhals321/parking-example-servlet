@@ -102,22 +102,79 @@ public class ParkingDao {
         return result;
     }
 
-    public boolean isPaid(String car_number) {
+    public CarBean selectOneCar(String car_number){
         getConnection();
         CarBean carBean = new CarBean();
+        try {
+            String sql = "select * from parking_log where car_number=?";
+            pstmt= con.prepareStatement(sql);
+            pstmt.setString(1,car_number);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                carBean.setParking_log_id(rs.getInt(1));
+                carBean.setIn_time(rs.getString(2));
+                carBean.setOut_time(rs.getString(3));
+                carBean.setPaid(rs.getInt(4));
+                carBean.setCar_number(rs.getString(5));
+            }
+            rs.close();
+            pstmt.close();
+            con.close();
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return carBean;
+    }
+
+    public boolean isPaid(String car_number) {
+        getConnection();
+        int paid=0;
         try {
             String sql = "select paid from parking_log where car_number=?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, car_number);
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                carBean.setPaid(rs.getInt(1));
+                paid=rs.getInt(1);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return carBean.getPaid() == 0 ? false : true;
+        return paid == 0 ? false : true;
     }
 
+    public boolean isParked(String car_number){
+        getConnection();
+        String car_num="";
+        try {
+            String sql = "select * from parking_log where car_number=? and paid=0";
+            pstmt=con.prepareStatement(sql);
+            pstmt.setString(1,car_number);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                car_num = rs.getString(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return car_num==null?false : true;
+    }
+
+    public int payed(String car_number) {
+        getConnection();
+        int result = 0;
+        try {
+            String sql = "update parking_log set paid=1 where car_number=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, car_number);
+            result = pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return result;
+    }
 }
